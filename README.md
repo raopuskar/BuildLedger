@@ -1,216 +1,314 @@
-# BuildLedger 🏗️
+# 🏗️ BuildLedger
 
-A full-stack MERN application designed to streamline construction project management by enabling efficient tracking of projects, expenses, budgets, contractors, and financial records through a centralized dashboard.
+> **A Microservices-Based Construction Contract & Vendor Management Platform**
 
-## 📌 Overview
+BuildLedger is a modern full-stack enterprise application designed to simplify construction project management by digitizing contract lifecycle management, vendor operations, invoice processing, delivery tracking, and payment workflows.
 
-BuildLedger is a construction management and expense tracking platform that helps builders, contractors, and project managers monitor project finances in real time. The system provides a structured way to manage project budgets, track expenditures, maintain records, and generate financial insights.
+The application follows a **Microservices Architecture** built with **Spring Boot**, allowing independent deployment, scalability, and maintainability for enterprise-grade systems.
 
-## 🚀 Features
+---
 
-### User Authentication
+## ✨ Features
 
-* Secure JWT-based authentication
-* User registration and login
-* Protected routes
-* Password encryption using bcrypt
+### 🔐 Authentication & Authorization
 
-### Project Management
+* Secure user authentication
+* Role-Based Access Control (RBAC)
+* Protected REST APIs
+* Session management
 
-* Create construction projects
-* Update project details
-* Delete projects
-* View project status and progress
+### 📑 Contract Management
 
-### Expense Tracking
+* Create and manage construction contracts
+* Contract lifecycle tracking
+* Contract status management
 
-* Add project expenses
-* Categorize expenses
-* Track spending history
-* Monitor project budgets
+### 🏢 Vendor Management
 
-### Dashboard Analytics
+* Vendor registration
+* Vendor profile management
+* Vendor performance tracking
+* Contract assignment
 
-* Total project overview
-* Expense summaries
-* Budget utilization tracking
-* Financial statistics visualization
+### 📦 Delivery Tracking
 
-### Record Management
+* Monitor material deliveries
+* Delivery status updates
+* Shipment history
 
-* Maintain construction records
-* Organize project data
-* Easy access to financial information
+### 💳 Invoice & Payment Management
 
-## 🛠️ Tech Stack
+* Generate invoices
+* Track payment status
+* Payment history
+* Financial record management
 
-### Frontend
+### ⚡ Microservices
+
+* Independent business services
+* Service discovery using Eureka
+* Inter-service communication using OpenFeign
+* Modular architecture
+
+---
+
+# 🏛️ System Architecture
+
+```text
+                        Client (React.js)
+                               │
+                               ▼
+                     Spring Boot REST APIs
+                               │
+      ┌───────────────┬───────────────┬───────────────┐
+      ▼               ▼               ▼               ▼
+ Contract Service  Vendor Service  Payment Service  Delivery Service
+      │               │               │               │
+      └───────────────┴───────────────┴───────────────┘
+                      Eureka Discovery Server
+                               │
+                            MySQL Database
+```
+
+---
+
+# 🚀 Tech Stack
+
+## Frontend
 
 * React.js
-* JavaScript (ES6+)
+* JavaScript
+* HTML5
 * CSS3
-* Axios
 
-### Backend
+## Backend
 
-* Node.js
-* Express.js
+* Java
+* Spring Boot
+* Spring MVC
+* Spring Security
+* REST APIs
 
-### Database
+## Microservices
 
-* MongoDB
-* Mongoose
+* Eureka Discovery Server
+* OpenFeign
 
-### Authentication & Security
+## Database
 
-* JWT Authentication
-* bcrypt.js
-* Protected API Routes
+* MySQL
 
-### Development Tools
+## Tools
 
 * Git
 * GitHub
-* VS Code
 * Postman
+* Swagger (OpenAPI)
+* Maven
 
-## 📂 Project Structure
+---
 
-```bash
+# 📂 Project Structure
+
+```text
 BuildLedger/
-│
-├── client/
-│   ├── src/
+
+├── frontend/
 │   ├── public/
+│   ├── src/
 │   └── package.json
 │
-├── server/
-│   ├── controllers/
-│   ├── routes/
-│   ├── models/
-│   ├── middleware/
-│   └── package.json
+├── backend/
+│   ├── api-gateway/
+│   ├── contract-service/
+│   ├── vendor-service/
+│   ├── payment-service/
+│   ├── delivery-service/
+│   ├── eureka-server/
+│   └── pom.xml
 │
 └── README.md
 ```
 
-## ⚙️ Installation
+---
 
-### Clone Repository
+# 📸 Screenshots
+
+## Dashboard
+
+<img width="100%" src="images/dashboard.png">
+
+---
+
+## Vendor Management
+
+<img width="100%" src="images/vendors.png">
+
+---
+
+## Contract Management
+
+<img width="100%" src="images/contracts.png">
+
+---
+
+## Payment Dashboard
+
+<img width="100%" src="images/payments.png">
+
+---
+
+# ⚙️ Installation
+
+## Clone Repository
 
 ```bash
 git clone https://github.com/raopuskar/BuildLedger.git
+
 cd BuildLedger
 ```
 
-### Install Frontend Dependencies
+---
+
+## Backend
 
 ```bash
-cd client
-npm install
+cd backend
+
+mvn clean install
+
+mvn spring-boot:run
 ```
 
-### Install Backend Dependencies
+---
+
+## Frontend
 
 ```bash
-cd ../server
+cd frontend
+
 npm install
+
+npm start
 ```
 
-### Configure Environment Variables
+---
 
-Create a `.env` file inside the server directory:
+# 🛠 Environment Variables
 
 ```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
+MYSQL_URL=
+
+MYSQL_USERNAME=
+
+MYSQL_PASSWORD=
+
+JWT_SECRET=
 ```
 
-### Run Backend
+---
 
-```bash
-npm start
-```
-
-### Run Frontend
-
-```bash
-npm start
-```
-
-## 📸 Screenshots
-
-### Login Page
-
-(Add Screenshot Here)
-
-### Dashboard
-
-(Add Screenshot Here)
-
-### Project Management
-
-(Add Screenshot Here)
-
-### Expense Tracking
-
-(Add Screenshot Here)
-
-## 🔗 API Endpoints
+# 📡 API Modules
 
 ### Authentication
 
-```http
-POST /api/auth/register
+```
 POST /api/auth/login
+
+POST /api/auth/register
 ```
 
-### Projects
+### Contracts
 
-```http
-GET    /api/projects
-POST   /api/projects
-PUT    /api/projects/:id
-DELETE /api/projects/:id
+```
+GET /contracts
+
+POST /contracts
+
+PUT /contracts/{id}
+
+DELETE /contracts/{id}
 ```
 
-### Expenses
+### Vendors
 
-```http
-GET    /api/expenses
-POST   /api/expenses
-PUT    /api/expenses/:id
-DELETE /api/expenses/:id
+```
+GET /vendors
+
+POST /vendors
+
+PUT /vendors/{id}
+
+DELETE /vendors/{id}
 ```
 
-## 🎯 Future Enhancements
+### Payments
 
-* PDF report generation
-* Expense analytics charts
-* Multi-user collaboration
-* Role-based access control
-* Email notifications
-* Cloud deployment (AWS)
+```
+GET /payments
 
-## 💡 Learning Outcomes
+POST /payments
+```
 
-Through this project, I gained practical experience in:
+### Deliveries
 
-* MERN Stack Development
-* REST API Design
-* MongoDB Data Modeling
-* JWT Authentication
-* State Management
-* Frontend-Backend Integration
-* Secure Web Application Development
+```
+GET /deliveries
 
-## 👨‍💻 Author
+POST /deliveries
+```
+
+---
+
+# 🎯 Key Highlights
+
+* Enterprise-grade Microservices Architecture
+* Spring Boot + React Full Stack
+* Eureka Service Discovery
+* OpenFeign Communication
+* Secure RBAC Implementation
+* RESTful API Design
+* Optimized MySQL Database
+* Modular & Scalable Design
+
+---
+
+# 📈 Future Improvements
+
+* Docker Support
+* Kubernetes Deployment
+* API Gateway
+* Redis Caching
+* RabbitMQ Event Messaging
+* CI/CD Pipeline
+* AWS Deployment
+* Email Notifications
+* Dashboard Analytics
+* PDF Report Generation
+
+---
+
+# 👨‍💻 Author
 
 **Puskar Rao**
 
-* GitHub: https://github.com/raopuskar
-* LinkedIn: Add Your LinkedIn Profile
+📧 [raopushkar4@gmail.com](mailto:raopushkar4@gmail.com)
+
+🔗 LinkedIn
+https://linkedin.com/in/puskar-rao
+
+💻 GitHub
+https://github.com/raopuskar
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+It helps others discover the project and motivates further development.
+
+---
 
 ## 📄 License
 
